@@ -5,11 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.remember
+import androidx.compose.material3.Button
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
@@ -27,8 +31,11 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 import io.readian.milanatutorial.main.MainActivityViewModel
@@ -40,15 +47,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
-
-        val a = 2
-        val b = 3
-
-        fun sum(a: Int, b: Int): Int {
-            return a + b
-        }
-
-        val c = sum(a, b)
 
 
         splashScreen.setKeepOnScreenCondition { viewModel.isLoading.value }
@@ -62,47 +60,98 @@ class MainActivity : ComponentActivity() {
                 topBar = {
                     TopBar(
                         onBackClicked = {
-
+                            println("onBackClicked")
                         }
                     )
                 }
             ) { innerPadding ->
+                var login by remember { mutableStateOf("") }
+                var password by remember { mutableStateOf("") }
+
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(innerPadding),
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    Box(
-                        modifier = Modifier.fillMaxWidth(),
-                        contentAlignment = Alignment.Center,
+
+                    MyLabel(value = "Login", fontWeight = FontWeight.Bold, fontSize = 32.sp)
+
+                    Spacer(modifier = Modifier.padding(16.dp))
+
+                    OutlinedTextField(
+                        value = login,
+                        onValueChange = { newValue ->
+                            login = newValue
+                        }
+                    )
+
+                    Spacer(modifier = Modifier.padding(8.dp))
+
+                    OutlinedTextField(
+                        value = password,
+                        onValueChange = { it ->
+                            password = it
+                        }
+                    )
+
+                    Spacer(modifier = Modifier.padding(5.dp))
+
+                    Button(
+                        onClick = {
+                            println("Login")
+                        },
+                        modifier = Modifier.padding(16.dp)
                     ) {
-                        Text(
-                            text = "Login",
-                            fontSize = 32.sp,
-                            fontWeight = FontWeight.Bold,
-                        )
+                        Text(text = "Login")
+                    }
+
+
+                    Button(
+                        onClick = {
+                            println("Forgot password?")
+                        },
+                        modifier = Modifier.padding(10.dp)
+                    ) {
+                        Text(text = "Forgot Password?")
                     }
                 }
             }
         }
     }
-
-    @Composable
-    @OptIn(ExperimentalMaterial3Api::class)
-    fun TopBar(onBackClicked: () -> Unit) {
-        CenterAlignedTopAppBar(
-            title = {},
-            navigationIcon = {
-                IconButton(onClick = onBackClicked) {
-                    Icon(
-                        imageVector = Icons.Outlined.ArrowBack,
-                        contentDescription = null,
-                    )
-                }
-            },
-            colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = MaterialTheme.colorScheme.surface,
-            ),
-        )
-    }
 }
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+fun TopBar(onBackClicked: () -> Unit) {
+    CenterAlignedTopAppBar(
+        title = {},
+        navigationIcon = {
+            IconButton(onClick = onBackClicked) {
+                Icon(
+                    imageVector = Icons.Outlined.ArrowBack,
+                    contentDescription = null,
+                )
+            }
+        },
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.surface,
+        ),
+    )
+}
+
+@Composable
+fun MyLabel(
+    value: String,
+    fontWeight: FontWeight = FontWeight.Normal,
+    fontSize: TextUnit = 16.sp,
+    color: Color = Color.Black
+) {
+    Text(
+        text = value,
+        fontWeight = fontWeight,
+        fontSize = fontSize,
+        color = color
+    )
+}
+
