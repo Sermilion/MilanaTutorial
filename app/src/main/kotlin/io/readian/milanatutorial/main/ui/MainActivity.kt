@@ -37,6 +37,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.readian.milanatutorial.core.FakeBackendServer
+import io.readian.milanatutorial.core.ui.MyLabel
+import io.readian.milanatutorial.feature.login.LoginScreen
 
 import io.readian.milanatutorial.main.MainActivityViewModel
 
@@ -52,106 +55,15 @@ class MainActivity : ComponentActivity() {
         splashScreen.setKeepOnScreenCondition { viewModel.isLoading.value }
         setContent {
             val uiState by viewModel.state.collectAsStateWithLifecycle()
-
-            Scaffold(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color.Cyan),
-                topBar = {
-                    TopBar(
-                        onBackClicked = {
-                            println("onBackClicked")
-                        }
-                    )
-                }
-            ) { innerPadding ->
-                var login by remember { mutableStateOf("") }
-                var password by remember { mutableStateOf("") }
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-
-                    MyLabel(value = "Login", fontWeight = FontWeight.Bold, fontSize = 32.sp)
-
-                    Spacer(modifier = Modifier.padding(16.dp))
-
-                    OutlinedTextField(
-                        value = login,
-                        onValueChange = { newValue ->
-                            login = newValue
-                        }
-                    )
-
-                    Spacer(modifier = Modifier.padding(8.dp))
-
-                    OutlinedTextField(
-                        value = password,
-                        onValueChange = { it ->
-                            password = it
-                        }
-                    )
-
-                    Spacer(modifier = Modifier.padding(5.dp))
-
-                    Button(
-                        onClick = {
-                            println("Login")
-                        },
-                        modifier = Modifier.padding(16.dp)
-                    ) {
-                        Text(text = "Login")
-                    }
-
-
-                    Button(
-                        onClick = {
-                            println("Forgot password?")
-                        },
-                        modifier = Modifier.padding(10.dp)
-                    ) {
-                        Text(text = "Forgot Password?")
-                    }
-                }
-            }
+            val server = FakeBackendServer()
+            LoginScreen(server = server)
         }
     }
 }
 
-@Composable
-@OptIn(ExperimentalMaterial3Api::class)
-fun TopBar(onBackClicked: () -> Unit) {
-    CenterAlignedTopAppBar(
-        title = {},
-        navigationIcon = {
-            IconButton(onClick = onBackClicked) {
-                Icon(
-                    imageVector = Icons.Outlined.ArrowBack,
-                    contentDescription = null,
-                )
-            }
-        },
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.surface,
-        ),
-    )
-}
-
-@Composable
-fun MyLabel(
-    value: String,
-    fontWeight: FontWeight = FontWeight.Normal,
-    fontSize: TextUnit = 16.sp,
-    color: Color = Color.Black
-) {
-    Text(
-        text = value,
-        fontWeight = fontWeight,
-        fontSize = fontSize,
-        color = color
-    )
-}
-
+// HOMEWORK:
+// username - (2-20 characters)
+// full name - (2-50 characters)
+// email - (valid email, 2-50 characters, <>@<>.<> )
+// password - (8-20 characters, at least one uppercase, one lowercase, one number, one special character)
+// confirm password - (must match password)
