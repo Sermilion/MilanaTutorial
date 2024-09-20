@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.readian.milanatutorial.core.ui.common.LocalActivity
-import io.readian.milanatutorial.coreMial.FakeBackendServer
+import io.readian.milanatutorial.core.FakeBackendServer
 
 @Composable
 fun LoginScreen(server: FakeBackendServer) {

@@ -32,12 +32,14 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.readian.milanatutorial.core.ui.common.LocalActivity
-import io.readian.milanatutorial.coreMial.FakeBackendServer
+import io.readian.milanatutorial.core.FakeBackendServer
 import io.readian.milanatutorial.feature.login.MyLabel
 import io.readian.milanatutorial.feature.login.TopBar
 
+// View
 @Composable
-fun RegistrationScreen(server: FakeBackendServer) {
+fun RegistrationScreen(viewModel: RegistrationViewModel) {
+
     var username by remember { mutableStateOf("") }
     var fullName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -120,7 +122,7 @@ fun RegistrationScreen(server: FakeBackendServer) {
                     if (password != confirmPassword) {
                         Toast.makeText(context, "Passwords do not match!", Toast.LENGTH_SHORT).show()
                     } else {
-                        val isSuccess = server.register(username, fullName, email, password)
+                        val isSuccess = viewModel.register(username, fullName, email, password)
                         if (isSuccess) {
                             Toast.makeText(context, "Registration successful!", Toast.LENGTH_SHORT).show()
                         } else {
