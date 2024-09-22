@@ -7,13 +7,12 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import io.readian.milanatutorial.core.ui.common.LocalActivity
-import io.readian.milanatutorial.core.FakeBackendServer
+import io.readian.milanatutorial.feature.posts.PostsScreen
 import io.readian.milanatutorial.main.MainActivityViewModel
-import io.readian.milanatutorial.feature.registration.RegistrationScreen
-import io.readian.milanatutorial.feature.registration.RegistrationViewModel
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -29,9 +28,9 @@ class MainActivity : ComponentActivity() {
       CompositionLocalProvider(LocalActivity provides this) {
         val uiState by viewModel.state.collectAsStateWithLifecycle()
 
-        val server = FakeBackendServer()
-        val viewModel = RegistrationViewModel(server)
-        RegistrationScreen(viewModel)
+//        RegistrationScreen(viewModel = hiltViewModel())
+
+        PostsScreen(viewModel = hiltViewModel())
       }
     }
   }

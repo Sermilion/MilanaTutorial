@@ -1,4 +1,4 @@
-package io.readian.milanatutorial.feature.login
+package io.readian.milanatutorial.feature.onboarding.login
 
 import android.widget.Toast
 import androidx.compose.foundation.background

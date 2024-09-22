@@ -1,14 +1,10 @@
 package io.readian.milanatutorial.core
 
-data class User(
-  val id: Int,
-  val name: String,
-  val username: String,
-  val email: String,
-  val password: String
-)
+import io.readian.milanatutorial.feature.onboarding.model.User
+import io.readian.milanatutorial.feature.posts.model.Post
+import javax.inject.Inject
 
-class FakeBackendServer {
+class FakeBackendServer @Inject constructor() {
   private val users = mutableListOf<User>()
 
   init {
@@ -54,4 +50,30 @@ class FakeBackendServer {
     )
     return true
   }
+
+  fun getPosts(): List<Post> {
+    return listOf(
+      Post(
+        id = 1,
+        title = "First post",
+        body = "This is the first post",
+      ),
+      Post(
+        id = 2,
+        title = "Second post",
+        body = "This is the second post",
+      ),
+      Post(
+        id = 3,
+        title = "Third post",
+        body = "This is the third post",
+      ),
+      Post(
+        id = 4,
+        title = "Fourth post",
+        body = "This is the fourth post",
+      ),
+    )
+  }
 }
+

@@ -1,4 +1,4 @@
-package io.readian.milanatutorial.feature.registration
+package io.readian.milanatutorial.feature.onboarding.registration
 
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -32,9 +32,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.readian.milanatutorial.core.ui.common.LocalActivity
-import io.readian.milanatutorial.core.FakeBackendServer
-import io.readian.milanatutorial.feature.login.MyLabel
-import io.readian.milanatutorial.feature.login.TopBar
+import io.readian.milanatutorial.feature.onboarding.login.MyLabel
+import io.readian.milanatutorial.feature.onboarding.login.TopBar
 
 // View
 @Composable
