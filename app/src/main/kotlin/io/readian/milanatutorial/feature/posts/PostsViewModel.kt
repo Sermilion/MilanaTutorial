@@ -38,6 +38,7 @@ class PostsViewModel @Inject constructor(
             id = currentList.size + 1,
             title = "New post",
             body = "This is a new post",
+            imageUrl = "https://www.cityam.com/wp-content/uploads/2021/06/McLaren-765-LT-scaled.jpg?w=742",
           )
         )
         newList

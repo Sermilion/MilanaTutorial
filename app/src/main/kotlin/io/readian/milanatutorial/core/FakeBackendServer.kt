@@ -57,23 +57,31 @@ class FakeBackendServer @Inject constructor() {
         id = 1,
         title = "First post",
         body = "This is the first post",
+        imageUrl = CAR_URL,
       ),
       Post(
         id = 2,
         title = "Second post",
         body = "This is the second post",
+        imageUrl = CAR_URL,
       ),
       Post(
         id = 3,
         title = "Third post",
         body = "This is the third post",
+        imageUrl = CAR_URL,
       ),
       Post(
         id = 4,
         title = "Fourth post",
         body = "This is the fourth post",
+        imageUrl = CAR_URL,
       ),
     )
+  }
+
+  private companion object {
+    const val CAR_URL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh0m7UVFGEGuuljtlV2H6DQGfBwva-VPSVxw&s"
   }
 }
 

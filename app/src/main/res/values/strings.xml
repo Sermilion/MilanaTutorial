@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">StarterApp</string>
+    <string name="listing_post_image_error">Listing image load error</string>
+    <string name="listing_post">Listing post</string>
 </resources>

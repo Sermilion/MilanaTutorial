@@ -13,7 +13,6 @@ plugins {
     alias(libs.plugins.readian.android.hilt)
     alias(libs.plugins.readian.android.room)
     id("jacoco")
-    alias(libs.plugins.readian.android.application.firebase)
 }
 
 val localProperties by lazy {
@@ -124,4 +123,7 @@ dependencies {
     testImplementation(libs.work.testing)
     testImplementation(kotlin("test"))
     kaptTest(libs.hilt.compiler)
+
+    implementation(libs.coil.kt)
+    implementation(libs.coil.kt.compose)
 }
