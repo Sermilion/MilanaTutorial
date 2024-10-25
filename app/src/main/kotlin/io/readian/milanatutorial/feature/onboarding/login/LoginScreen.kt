@@ -90,13 +90,13 @@ fun LoginScreen(server: FakeBackendServer) {
                     if (user == null) {
                         Toast.makeText(
                             context,
-                            "Registration failed",
+                            "Login failed",
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {
                         Toast.makeText(
                             context,
-                            "Registration success",
+                            "Login success",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
