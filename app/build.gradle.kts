@@ -111,7 +111,7 @@ dependencies {
     implementation(libs.kotlinx.collections.immutable)
 
     implementation(libs.okhttp)
-    implementation(libs.retrofit)
+    implementation(libs.retrofit.core)
 
     implementation(libs.play.update.compose)
 

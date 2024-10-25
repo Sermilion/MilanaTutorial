@@ -160,7 +160,6 @@ play-update-compose = { module = "se.warting.in-app-update:in-app-update-compose
 
 # network related libraries
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
-retrofit = { module = "com.squareup.retrofit2:retrofit", version = "2.9.0" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }

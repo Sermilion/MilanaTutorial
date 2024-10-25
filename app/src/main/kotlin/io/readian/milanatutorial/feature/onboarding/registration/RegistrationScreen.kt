@@ -89,7 +89,7 @@ fun RegistrationScreen(viewModel: RegistrationViewModel) {
                 value = email,
                 onValueChange = { email = it },
                 label = "Email",
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             )
 
             Spacer(modifier = Modifier.padding(8.dp))
@@ -99,7 +99,7 @@ fun RegistrationScreen(viewModel: RegistrationViewModel) {
                 onValueChange = { password = it },
                 label = "Password",
                 passwordVisibility = passwordVisibility,
-                onPasswordVisibilityChange = { passwordVisibility = it }
+                onPasswordVisibilityChange = { passwordVisibility = it },
             )
 
             Spacer(modifier = Modifier.padding(8.dp))
@@ -109,7 +109,7 @@ fun RegistrationScreen(viewModel: RegistrationViewModel) {
                 onValueChange = { confirmPassword = it },
                 label = "Confirm Password",
                 passwordVisibility = confirmPasswordVisibility,
-                onPasswordVisibilityChange = { confirmPasswordVisibility = it }
+                onPasswordVisibilityChange = { confirmPasswordVisibility = it },
             )
 
             Spacer(modifier = Modifier.padding(8.dp))
@@ -156,6 +156,7 @@ fun RegistrationTextField(
 @Composable
 fun RegistrationPasswordField(
     value: String,
+    modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
     label: String,
     passwordVisibility: Boolean,
@@ -165,7 +166,7 @@ fun RegistrationPasswordField(
         value = value,
         onValueChange = onValueChange,
         label = { Text(label) },
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().then(modifier),
         visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
         trailingIcon = {
             IconButton(onClick = { onPasswordVisibilityChange(!passwordVisibility) }) {
