@@ -100,7 +100,6 @@ fun LoginScreen(server: FakeBackendServer) {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-
                 },
                 modifier = Modifier.padding(16.dp)
             ) {

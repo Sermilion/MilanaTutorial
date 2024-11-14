@@ -1,6 +1,6 @@
 package io.readian.milanatutorial.main.ui
 
-
+import WelcomeScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,15 +8,16 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
-import io.feature.newonboarding.posts.NewPostsScreen
 import io.readian.milanatutorial.core.ui.common.LocalActivity
-import io.readian.milanatutorial.core.update.NewFakeBackendServer
-import io.readian.milanatutorial.feature.newonboarding.LoginScreenNew
-import io.readian.milanatutorial.feature.newonboarding.ThemesScreen
-import io.readian.milanatutorial.feature.newonboarding.ThemesViewModel
+import io.readian.milanatutorial.feature.app.LogScreen
+import io.readian.milanatutorial.feature.app.SignUpScreen
+import io.readian.milanatutorial.feature.onboarding.login.LoginScreen
+import io.readian.milanatutorial.feature.onboarding.registration.RegistrationScreen
 import io.readian.milanatutorial.main.MainActivityViewModel
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -32,7 +33,9 @@ class MainActivity : ComponentActivity() {
       CompositionLocalProvider(LocalActivity provides this) {
         val uiState by viewModel.state.collectAsStateWithLifecycle()
 
-//        RegistrationScreen(viewModel = hiltViewModel())
+        SignUpScreen()
+
+    //RegistrationScreen(viewModel = hiltViewModel())
 
         //PostsScreen(viewModel = hiltViewModel())
 
@@ -40,8 +43,9 @@ class MainActivity : ComponentActivity() {
 
         //NewPostsScreen()
 
-          ThemesScreen(themesViewModel = ThemesViewModel(server = NewFakeBackendServer()))
+          //ThemesScreen(themesViewModel = ThemesViewModel(server = NewFakeBackendServer()))
 
+        //LogScreen()
       }
     }
   }
